@@ -9,19 +9,25 @@
       background-color: #0f0f0f;
       font-family: sans-serif;
       display: flex;
-      height: 100vh;
       justify-content: center;
       align-items: center;
-      font-size: 2rem;
+      height: 100vh;
       margin: 0;
     }
 
     .shiny-text {
-      background: linear-gradient(90deg, #cccccc, #ffffff, #cccccc);
-      background-size: 200%;
+      font-size: 2rem;
+      font-weight: bold;
+      background: linear-gradient(
+        90deg,
+        #bfbfbf 0%,
+        #ffffff 50%,
+        #bfbfbf 100%
+      );
+      background-size: 200% auto;
+      color: transparent;
       background-clip: text;
       -webkit-background-clip: text;
-      color: transparent;
       -webkit-text-fill-color: transparent;
       animation: shine 3s linear infinite;
     }
@@ -40,3 +46,4 @@
   <div class="shiny-text">Website is under construction ^_–☆</div>
 </body>
 </html>
+
