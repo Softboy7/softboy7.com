@@ -20,8 +20,8 @@
       justify-content: center;
       align-items: center;
       padding: 20px;
-      position: relative;
       overflow-x: hidden;
+      position: relative;
     }
 
     .particles {
@@ -34,18 +34,38 @@
       pointer-events: none;
     }
 
-    .window-frame {
+    .window-wrapper {
       position: relative;
-      z-index: 1;
       width: 90vw;
-      max-width: 1400px; /* Make it bigger */
-      background: url('Window2.png') no-repeat center center;
-      background-size: contain;
+      max-width: 1400px;
+      aspect-ratio: 1920 / 1050;
       display: flex;
       justify-content: center;
       align-items: center;
-      aspect-ratio: 1920 / 1050;
+    }
 
+    .window-img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .content-overlay {
+      position: absolute;
+      width: 1050px; /* Match visible window area */
+      max-width: 90%;
+      height: 1050px;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 40px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.7);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: center;
+      pointer-events: none; /* Prevent interference with particles */
+    }
 
     header h1 {
       margin: 0 0 10px;
@@ -64,6 +84,7 @@
       font-weight: bold;
       font-size: 1rem;
       transition: color 0.3s ease;
+      pointer-events: auto; /* Allow interaction */
     }
 
     nav a:hover {
@@ -84,22 +105,24 @@
 
     footer p {
       font-size: 0.9rem;
-      margin-top: 40px;
       color: #777;
     }
 
-    img {
+    img.under-construction {
       max-width: 300px;
       border-radius: 8px;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 10px rgba(255,255,255,0.2);
+      pointer-events: auto;
     }
   </style>
 </head>
 <body>
   <div class="particles"></div>
 
-  <div class="window-frame">
-    <div class="window-inner">
+  <div class="window-wrapper">
+    <img src="Window.png" alt="Custom Window" class="window-img" />
+    
+    <div class="content-overlay">
       <header>
         <h1>★ Welcome to Softboy7's Website ★</h1>
         <nav>
@@ -113,7 +136,7 @@
       <main>
         <h2>This website is under construction.</h2>
         <p>But feel free to poke around. There's music, thoughts, and weird little secrets hidden here...</p>
-        <img src="under-construction.gif" alt="Under Construction" />
+        <img src="under-construction.gif" alt="Under Construction" class="under-construction" />
       </main>
 
       <footer>
