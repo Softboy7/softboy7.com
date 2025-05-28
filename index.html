@@ -17,8 +17,7 @@
       margin: 0;
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
+      justify-content: center;
       align-items: center;
       padding: 20px;
       position: relative;
@@ -35,22 +34,36 @@
       pointer-events: none;
     }
 
-    .container {
+    .window-frame {
       position: relative;
       z-index: 1;
-      max-width: 900px;
       width: 100%;
-      background: rgba(15, 15, 15, 0.85);
-      border-radius: 10px;
-      padding: 30px 40px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.8);
+      max-width: 1050px;
+      aspect-ratio: 1920 / 1050;
+      background: url('Window.png') no-repeat center center;
+      background-size: contain;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+    }
+
+    .content {
       text-align: center;
+      max-width: 800px;
+      width: 100%;
     }
 
     header h1 {
       margin: 0 0 10px;
       font-size: 2.5rem;
       letter-spacing: 1.5px;
+    }
+
+    nav {
+      margin-bottom: 20px;
     }
 
     nav a {
@@ -87,38 +100,40 @@
     img {
       max-width: 300px;
       border-radius: 8px;
-      box-shadow: 0 0 10px rgba(255,255,255,0.2);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
     }
   </style>
 </head>
 <body>
   <div class="particles"></div>
 
-  <div class="container">
-    <header>
-      <h1>★ Welcome to Softboy7's Website ★</h1>
-      <nav>
-        <a href="index.html">Home</a> |
-        <a href="about.html">About</a> |
-        <a href="music.html">Music</a> |
-        <a href="gallery.html">Gallery</a>
-      </nav>
-    </header>
+  <div class="window-frame">
+    <div class="content">
+      <header>
+        <h1>★ Welcome to Softboy7's Website ★</h1>
+        <nav>
+          <a href="index.html">Home</a> |
+          <a href="about.html">About</a> |
+          <a href="music.html">Music</a> |
+          <a href="gallery.html">Gallery</a>
+        </nav>
+      </header>
 
-    <main>
-      <h2>This website is under construction.</h2>
-      <p>But feel free to poke around. There's music, thoughts, and weird little secrets hidden here...</p>
-      <img src="under-construction.gif" alt="Under Construction" />
-    </main>
+      <main>
+        <h2>This website is under construction.</h2>
+        <p>But feel free to poke around. There's music, thoughts, and weird little secrets hidden here...</p>
+        <img src="under-construction.gif" alt="Under Construction" />
+      </main>
 
-    <footer>
-      <p>© 2025 Softboy7.</p>
-    </footer>
+      <footer>
+        <p>© 2025 Softboy7.</p>
+      </footer>
+    </div>
   </div>
 
   <script src="particles.js"></script>
   <script>
-    particlesJS.load('particles', 'particles-config.json', function() {
+    particlesJS.load('particles', 'particles-config.json', function () {
       console.log('Particles.js config loaded');
     });
   </script>
