@@ -2,101 +2,49 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Softboy7</title>
-  <link rel="icon" href="staricon2.png" type="image/png" />
+  <link rel="icon" href="assets/staricon2.png" type="image/png" />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      background-color: #0f0f0f;
-      background-image: url('bgplus.jpg');
-      background-size: cover;
-      background-position: center;
-      font-family: 'Orbitron', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-
-    .container {
-      position: relative;
-      z-index: 1;
-      max-width: 800px;
-      width: 90%;
-      padding: 30px 40px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow:
-        0 0 0 1px rgba(255, 255, 255, 0.15),
-        0 10px 30px rgba(0, 0, 0, 0.5),
-        inset 0 1px 2px rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      color: #eaeaea;
-      text-align: center;
-    }
-
-    .window-titlebar {
-      width: 100%;
-      background: rgba(255, 255, 255, 0.1);
-      padding: 10px 20px;
-      text-align: left;
-      font-weight: bold;
-      font-size: 0.9rem;
-      border-radius: 10px 10px 0 0;
-      color: #fff;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .shiny-text span {
-      font-size: 1.8rem;
-      font-weight: bold;
-      display: inline-block;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <div class="window-titlebar">Softboy7.exe</div>
-    <div class="shiny-text">
-      <span style="color:#999999">W</span>
-      <span style="color:#a1a1a1">e</span>
-      <span style="color:#aaaaaa">b</span>
-      <span style="color:#b2b2b2">s</span>
-      <span style="color:#bababa">i</span>
-      <span style="color:#c2c2c2">t</span>
-      <span style="color:#cacaca">e</span>
-      <span style="color:#d2d2d2"> </span>
-      <span style="color:#dadada">i</span>
-      <span style="color:#e2e2e2">s</span>
-      <span style="color:#eaeaea"> </span>
-      <span style="color:#f2f2f2">u</span>
-      <span style="color:#f9f9f9">n</span>
-      <span style="color:#fdfdfd">d</span>
-      <span style="color:#ffffff">e</span>
-      <span style="color:#fdfdfd">r</span>
-      <span style="color:#f9f9f9"> </span>
-      <span style="color:#f2f2f2">c</span>
-      <span style="color:#eaeaea">o</span>
-      <span style="color:#e2e2e2">n</span>
-      <span style="color:#dadada">s</span>
-      <span style="color:#d2d2d2">t</span>
-      <span style="color:#cacaca">r</span>
-      <span style="color:#c2c2c2">u</span>
-      <span style="color:#bababa">c</span>
-      <span style="color:#b2b2b2">t</span>
-      <span style="color:#aaaaaa">i</span>
-      <span style="color:#a1a1a1">o</span>
-      <span style="color:#999999">n</span>
-      <span style="color:#919191"> </span>
-      <span style="color:#898989">^</span>
-      <span style="color:#818181">_</span>
-      <span style="color:#797979">–</span>
-      <span style="color:#717171">☆</span>
+  <div class="window" id="mainWindow">
+    <div class="title-bar">
+      <div class="title">Softboy7.exe</div>
+      <div class="window-buttons">
+        <img src="assets/icon-minimize.png" alt="Minimize">
+        <img src="assets/icon-maximize.png" alt="Maximize">
+        <img src="assets/icon-close.png" alt="Close">
+      </div>
+    </div>
+    <div class="window-content">
+      <p>Welcome to my futuristic music archive.</p>
+      <p>This website is still under construction 🛠</p>
+      <p>Expect cool audio, lost files, and secret folders soon...</p>
     </div>
   </div>
+
+  <script>
+    // Drag window behavior
+    const windowEl = document.getElementById("mainWindow");
+    const titleBar = windowEl.querySelector(".title-bar");
+    let isDragging = false, offsetX = 0, offsetY = 0;
+
+    titleBar.addEventListener("mousedown", e => {
+      isDragging = true;
+      offsetX = e.clientX - windowEl.offsetLeft;
+      offsetY = e.clientY - windowEl.offsetTop;
+    });
+
+    document.addEventListener("mouseup", () => isDragging = false);
+    document.addEventListener("mousemove", e => {
+      if (isDragging) {
+        windowEl.style.left = `${e.clientX - offsetX}px`;
+        windowEl.style.top = `${e.clientY - offsetY}px`;
+      }
+    });
+  </script>
 </body>
 </html>
+
