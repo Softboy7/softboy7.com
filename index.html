@@ -7,9 +7,34 @@
   <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/png" href="assets/staricon2.png">
   <style>
-    body {
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Courier New', monospace;
+      color: #ddd;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
       background: url('assets/bgplus.jpg') no-repeat center center fixed;
       background-size: cover;
+      z-index: -2;
+    }
+
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
     }
   </style>
 </head>
@@ -45,3 +70,4 @@
   </script>
 </body>
 </html>
+
