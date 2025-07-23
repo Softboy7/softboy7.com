@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Digital Glitch Portal</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+    body {
+      margin: 0;
+      background-color: #000;
+      color: #00FFB3;
+      font-family: 'Share Tech Mono', monospace;
+      overflow: hidden;
+    }
+
+    .scanlines::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(0, 255, 179, 0.03),
+        rgba(0, 255, 179, 0.03) 2px,
+        transparent 2px,
+        transparent 4px
+      );
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .glitch {
+      font-size: 2em;
+      position: relative;
+      color: #00FFB3;
+      animation: flicker 1.5s infinite alternate;
+    }
+
+    @keyframes flicker {
+      0% { opacity: 1; }
+      45% { opacity: 0.4; }
+      60% { opacity: 0.9; }
+      70% { opacity: 0.1; }
+      100% { opacity: 0.7; }
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      z-index: 1;
+      position: relative;
+    }
+
+    .code-box {
+      border: 1px dashed #00FFB3;
+      padding: 2rem;
+      margin-top: 2rem;
+      background-color: rgba(0, 255, 179, 0.05);
+      animation: glitchBox 1s infinite alternate;
+    }
+      
+      
+
+    @keyframes glitchBox {
+      0% {
+        transform: scale(1) rotate(0deg);
+      }
+      100% {
+        transform: scale(1.02) rotate(0.2deg);
+      }
+    }
+
+    .ascii {
+      font-size: 12px;
+      color: #0ff;
+      white-space: pre;
+      margin-bottom: 1rem;
+      animation: flicker 2s infinite alternate;
+    }
+
+    .added {
+      margin-top: 1rem;
+      font-size: 1.2em;
+      color: #FF66C4;
+      animation: blink 3s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
+    }
+
+    #special-text {
+  visibility: hidden;
+  color: red;
+  font-size: 1.5em;
+  margin-top: 20px;
+  text-align: center;
+  transition: visibility 0.3s ease;
+  text-shadow:
+    0 0 2px rgba(0, 255, 179, 0),   /* small and sharp */
+    0 0 8px rgba(0, 255, 179, 0),   /* medium soft */
+    0 0 16px rgba(0, 255, 179, 0),  /* bigger soft */
+    0 0 32px rgb(255, 0, 0);  /* faint big spread */
+}
+
+#special-text.visible {
+  visibility: visible;
+  animation: shake 0.5s infinite;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+      @keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes rainbowHue {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+.code-box.rainbow {
+  animation: glitchBox 0.1s infinite alternate, rainbowHue 0.6s linear infinite;
+}
+
+#rave-text {
+  display: none;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #00FFB3;
+  text-shadow:
+    0 0 2px rgba(0, 255, 179, 0),   /* small and sharp */
+    0 0 8px rgba(0, 255, 179, 0),   /* medium soft */
+    0 0 16px rgba(0, 255, 179, 0),  /* bigger soft */
+    0 0 32px rgb(0, 255, 179);  /* faint big spread */
+  animation: raveHue 1s infinite linear;
+  margin-top: 20px;
+  text-align: center;
+  animation: raveHue 0.8s infinite linear, bounce 0.4s infinite ease-in-out;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1); /* grow 10% bigger */
+  }
+}
+
+@keyframes raveHue {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+      
+
+    /* Button style */
+    #start-btn {
+      margin-top: 30px;
+      padding: 0.7em 1.5em;
+      background: #00FFB3;
+      border: none;
+      color: #000;
+      font-weight: bold;
+      font-family: 'Share Tech Mono', monospace;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+      user-select: none;
+    }
+    #start-btn:hover {
+      background: #00cca3;
+    }
+  </style>
+</head>
+<body class="scanlines">
+  <div class="container">
+    <div class="glitch">[ the database ]</div>
+
+    <div class="ascii">
+ ░▒▓█ discord/#softboy7-exclusive █▓▒░<br />
+<span style="color:#fff;">_:://searching for all dreaming players</span>
+    </div>
+
+    <div class="code-box">
+      <div class="glitch">all entries:</div>
+      <div class="added">海岩 has been added to the database ✨</div>
+      <div class="added">...</div>
+    </div>
+
+    <div id="special-text">why are you still here?</div>
+    <div id="rave-text">rave mode activated</div>
+
+    <button id="start-btn">Start Audio</button>
+  </div>
+
+  <audio id="bg-audio" loop>
+    <source src="database.mp3" type="audio/mpeg" />
+  </audio>
+
+<script>
+  const audio = document.getElementById('bg-audio');
+  const specialText = document.getElementById('special-text');
+
+  let fadeOutTimeout;
+  let hideTimeout;
+  let specialShown = false;
+
+const startBtn = document.getElementById('start-btn');
+
+startBtn.addEventListener('click', () => {
+  audio.play()
+    .then(() => {
+      console.log('Audio started');
+      startBtn.style.display = 'none'; // ✅ hide button after starting
+    })
+    .catch(e => {
+      console.log('Audio play failed:', e);
+    });
+});
+const raveText = document.getElementById('rave-text');
+
+startBtn.addEventListener('click', () => {
+  audio.play()
+    .then(() => {
+      console.log('Audio started');
+      startBtn.style.display = 'none';
+
+      // Show rave text after 14 seconds
+      setTimeout(() => {
+        raveText.style.display = 'block';
+      }, 14000); // 14 seconds
+    })
+    .catch(e => {
+      console.log('Audio play failed:', e);
+    });
+});
+
+
+  audio.addEventListener('timeupdate', () => {
+    if (audio.currentTime >= 3 && !specialShown) { // 3 seconds for testing
+      specialShown = true;
+      specialText.classList.add('visible');
+
+      clearTimeout(fadeOutTimeout);
+      clearTimeout(hideTimeout);
+
+      // Fade out after 3 seconds
+      fadeOutTimeout = setTimeout(() => {
+        specialText.style.animation = 'fadeOut 2s forwards';
+
+        // Hide fully after fade-out ends
+        hideTimeout = setTimeout(() => {
+          specialText.classList.remove('visible');
+          specialText.style.animation = '';
+          specialText.style.visibility = 'hidden';
+          specialShown = false;
+        }, 2000); // match fadeOut duration
+      }, 3000); // 3 seconds visible
+    }
+  });
+const codeBox = document.querySelector('.code-box');
+let rainbowTriggered = false;
+
+audio.addEventListener('timeupdate', () => {
+  if (audio.currentTime >= 14 && !rainbowTriggered) {
+    rainbowTriggered = true;
+    codeBox.classList.add('rainbow');
+
+    setTimeout(() => {
+      codeBox.classList.remove('rainbow');
+      rainbowTriggered = false; // optional if you want to retrigger later
+    }, 10000); // 10 seconds
+  }
+});
+
+</script>
+
+</body>
+</html>
+
