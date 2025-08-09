@@ -241,6 +241,22 @@ footer {
 .merch-image {
   margin-left: 85px; /* adjust this value as needed */
 }
+/* Override on mobile */
+@media (max-width: 768px) {
+  .merch-image {
+    margin-left: 0;
+  }
+
+  .button-image-wrapper {
+    flex-direction: column;  /* stack image and button vertically */
+    text-align: center;
+  }
+
+  .small-image {
+    max-width: 100%;
+    height: auto;
+  }
+}
 @media (max-width: 768px) {
   .social-sidebar {
     position: fixed;
