@@ -276,6 +276,15 @@ footer {
   }
 }
 
+.glow-text {
+  color: #ffffff; /*text color */
+  text-shadow:
+    0 0 20px #7ad9ff,
+    0 0 40px #008eff; /* outer glow layers */
+  font-weight: 500;
+  font-size: 1.2em; /* optional, makes it more readable */
+}
+
 
 footer {
   position: relative;
