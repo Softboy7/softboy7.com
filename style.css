@@ -277,12 +277,24 @@ footer {
 }
 
 .glow-text {
-  color: #ffffff; /*text color */
+  color: #ffffff;
   text-shadow:
     0 0 20px #7ad9ff,
-    0 0 40px #008eff; /* outer glow layers */
+    0 0 40px #008eff;
   font-weight: 500;
-  font-size: 1.2em; /* optional, makes it more readable */
+  font-size: 1em;
+}
+
+.glow-text.cancelled {
+  color: #9a9a9a;
+  text-shadow: none;      /* removes glow */
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+.glow-text.cancelled a,
+.glow-text.cancelled a:visited {
+  color: #9a9a9a;
+  text-decoration: line-through;
 }
 
 
