@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>dreamData :: archive</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: #3FD6FF;
+      font-family: 'Share Tech Mono', monospace;
+      overflow-y: auto;
+    }
+
+    /* scanlines */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(38, 255, 235, 0.04),
+        rgba(38, 255, 235, 0.04) 2px,
+        transparent 2px,
+        transparent 4px
+      );
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .container {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 4rem 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .terminal {
+      max-width: 720px;
+      width: 100%;
+      background: rgba(5, 14, 25, 0.88);
+      border: 1px dashed #3FD6FF;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 0 45px rgba(61, 179, 255, 0.2);
+      backdrop-filter: blur(6px);
+      animation: subtleGlitch 1.5s infinite alternate;
+    }
+
+    @keyframes subtleGlitch {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-1px); }
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 1.8rem;
+      animation: flicker 2s infinite alternate;
+    }
+
+    @keyframes flicker {
+      0% { opacity: 1; }
+      50% { opacity: 0.6; }
+      100% { opacity: 0.9; }
+    }
+
+    .divider {
+      text-align: center;
+      margin: 2.5rem 0;
+      opacity: 0.6;
+    }
+
+    p {
+      line-height: 1.7;
+      margin: 0;
+      color: #EAF7FF;
+    }
+
+    .track {
+      color: #5FEBFF;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 3rem;
+      opacity: 0.7;
+      font-size: 0.9rem;
+    }
+
+    /* ENTRY LAYOUT */
+    .entry {
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .entry.reverse {
+      grid-template-columns: 220px 1fr;
+    }
+
+    .entry img {
+      width: 100%;
+      border-radius: 6px;
+      box-shadow: 0 0 25px rgba(63, 214, 255, 0.25);
+      opacity: 0.95;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .entry,
+      .entry.reverse {
+        grid-template-columns: 1fr;
+      }
+
+      .entry img {
+        max-width: 260px;
+        margin: 1.5rem auto 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="terminal">
+
+      <h1>[ dreamData : lore ]</h1>
+
+      <!-- INTRO + ALBUM COVER -->
+      <div class="entry">
+        <div>
+          <p>
+            I worked on <span class="track">dreamData</span> for 1.5 years, and it became a very personal project.
+            After struggling with my mental health for a long time, I fell in love with being alive again.
+            A big part of that healing came through online connections — calls, shared moments,
+            emotional conversations through text messages, gaming sessions, and late nights spent together online.
+          </p>
+        </div>
+
+        <img src="cover_dreamdata.png" alt="dreamData album cover">
+      </div>
+
+      <div class="divider">✦ ── ✧ ✦ ── ✧</div>
+
+      <!-- DIGITAL INTIMACY -->
+      <p>
+        The album explores how emotions (including romantic feelings) can be communicated digitally.
+        Tracks like <span class="track">my little angel</span>, <span class="track">love letter</span>,
+        <span class="track">dreamData</span>, and <span class="track">flower forest</span>
+        focus on intimacy and connection in online spaces, showing how real and meaningful these relationships can be.
+        
+      </p>
+
+      <div class="divider">✦ ── ✧ ✦ ── ✧</div>
+      
+      <!-- LAST PROMISE -->
+      <div class="entry reverse">
+                <img src="cover_lastpromise.jpg" alt="last promise cover">
+        <p>
+          <span class="track">last promise</span> focuses on embracing your unique personality.
+          While changing yourself to fit in can feel tempting, the song reminds outcasts that
+          true happiness comes from being accepted for who you are and recognizing the beauty
+          in your own individuality.
+        </p>
+
+
+      </div>
+
+      <div class="divider">✦ ── ✧ ✦ ── ✧</div>
+
+      <!-- TAKE MY HAND -->
+      <p>
+        Another important moment behind the album was trusting a stranger and flying to Brazil,
+        which turned into a very wholesome experience.
+        That feeling of comfort and vulnerability is reflected in <span class="track">take my hand</span>.
+      </p>
+
+      <div class="divider">✦ ── ✧ ✦ ── ✧</div>
+
+      <!-- NIGHTFALL -->
+      <div class="entry">
+        
+
+        <p>
+          <span class="track">nightfall</span> is about people who feel more confident, inspired,
+          and alive at night — a space where everything feels possible.
+        </p>
+        <img src="cover_nightfall.jpg" alt="nightfall cover">
+      </div>
+
+      <div class="divider">✦ ── ✧ ✦ ── ✧</div>
+      
+      <!-- Above the layerss -->
+      <p>
+        <span class="track">above the layers</span> is about a dreamy place above the clouds
+        that you can reach by finding inner peace. The track also connects to other tracks:
+        in the music video of dead pc, the line "see you above the layers" hints at it,
+        while "giving up" from "welcome to the void" refers to "layer 0", the lowest point of life. 
+      </p>
+
+            <div class="divider">✦ ── ✧ ✦ ── ✧</div>
+      
+      <!-- DEAD PC -->
+      <div class="entry reverse">
+        <img src="cover_deadpc.jpg" alt="dead pc cover">
+
+        <p>
+          <span class="track">dead pc</span> kinda has it's own storyline.
+          Many people know the feeling of losing photos, messages, or personal files forever
+          due to a broken phone or corrupted hard drive.
+          The track captures the sadness of that loss, while recognizing that even if the data is gone,
+          the memories connected to it continue to exist. An animated
+        <a
+          href="https://www.youtube.com/watch?v=dbg1Pbgm--I"
+          target="_blank"
+          rel="noopener noreferrer"
+          style="color: white; text-decoration: underline;"
+        >
+        music video</a>
+         was created to visually explore this idea.
+        </p>
+      </div>
+
+      <div class="divider">✦ ── ✧ ✦ ── ✧</div>
+
+      <!-- FINAL -->
+      <p>
+        <span class="track">final steps through the portal</span> brings the listener back into reality,
+        after viewing the world through a more hopeful lens.
+      </p>
+
+      <div class="divider">✦ ── ✧ ✦ ── ✧</div>
+
+      <p>
+        Overall, <span class="track">dreamData</span> is built from real-life experiences,
+        the reasons I fell in love with life again, and dream worlds inspired by
+        Y2K, Frutiger Aero, solarpunk, kawaii, and hopecore.
+      </p>
+
+      <div class="footer">
+        end of lore · more lore on my
+        <a
+          href="https://discord.gg/f9EwFAqAup"
+          target="_blank"
+          rel="noopener noreferrer"
+          style="color: white; text-decoration: underline;"
+        >
+          discord server
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
