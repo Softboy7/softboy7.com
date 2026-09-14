@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>going deeper</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    background: #000;
+    color: #fff;
+
+    font-family: "Courier New", monospace;
+
+    overflow-x: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition:
+        background 1.2s ease,
+        color 1.2s ease;
+}
+
+
+/* =====================================================
+   MAIN CONTAINER
+   ===================================================== */
+
+.container {
+    width: min(900px, 94vw);
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px 20px;
+
+    text-align: center;
+}
+
+
+/* =====================================================
+   MAIN MESSAGE
+   ===================================================== */
+
+#message {
+    min-height: 28px;
+
+    margin-bottom: 45px;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 12px;
+
+    line-height: 1.8;
+
+    letter-spacing: 0;
+
+    text-shadow:
+        0 0 5px rgba(255,255,255,0.9),
+        0 0 15px rgba(255,255,255,0.45);
+}
+
+
+/* =====================================================
+   SPECIAL DATE MESSAGE
+   ===================================================== */
+
+#dateMessage {
+    max-width: 700px;
+
+    margin-bottom: 30px;
+
+    min-height: 90px;
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 10px;
+
+    line-height: 2;
+
+    letter-spacing: 0;
+
+    opacity: 0;
+
+    transition: opacity 1s ease;
+
+    text-shadow:
+        0 0 5px currentColor,
+        0 0 15px currentColor;
+}
+
+#dateMessage.visible {
+    opacity: 1;
+}
+
+
+/* =====================================================
+   ASCII
+   ===================================================== */
+
+.ascii-box {
+    padding: 25px 30px;
+
+    border: none;
+
+    box-shadow: none;
+}
+
+
+#ascii {
+    margin: 0;
+    padding: 0;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: clamp(9px, 1.5vw, 16px);
+
+    line-height: 1.15;
+
+    white-space: pre;
+
+    color: #fff;
+
+    text-align: left;
+
+    text-shadow:
+        0 0 3px #fff,
+        0 0 7px rgba(255,255,255,0.9),
+        0 0 18px rgba(255,255,255,0.5);
+
+    user-select: none;
+}
+
+
+/*
+ * Only the two ▓ characters are animated.
+ */
+
+.blink-character {
+    display: inline-block;
+
+    transition:
+        opacity 0.08s ease;
+}
+
+
+/* =====================================================
+   WORD OF THE DAY
+   ===================================================== */
+
+.word-wrapper {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    margin-top: 28px;
+}
+
+
+.word-label {
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 7px;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 10px;
+
+    opacity: 0.55;
+
+    user-select: none;
+}
+
+
+#wordBox {
+    min-width: 170px;
+
+    padding: 12px 18px;
+
+    border: 1px solid rgba(255,255,255,0.7);
+
+    font-family: "Press Start 2P", monospace;
+
+    font-size: 9px;
+
+    letter-spacing: 0;
+
+    cursor: pointer;
+
+    user-select: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.1s ease;
+}
+
+
+#wordBox:hover {
+    border-color: #fff;
+
+    box-shadow:
+        0 0 5px rgba(255,255,255,0.8),
+        0 0 15px rgba(255,255,255,0.4);
+}
+
+
+#wordBox:active {
+    transform: scale(0.97);
+}
+
+
+#wordBox.used {
+    cursor: default;
+
+    opacity: 0.75;
+}
+
+
+#wordBox.used:hover {
+    border-color: rgba(255,255,255,0.7);
+
+    box-shadow: none;
+}
+
+
+/* =====================================================
+   MAY 7
+   ===================================================== */
+
+body.may7 {
+    background: #000814;
+
+    color: #dff4ff;
+}
+
+
+body.may7 #dateMessage,
+body.may7 #ascii,
+body.may7 .word-label {
+    color: #dff4ff;
+
+    text-shadow:
+        0 0 4px #69cfff,
+        0 0 12px #168cff,
+        0 0 30px rgba(0,140,255,0.8);
+}
+
+
+body.may7 #wordBox {
+    border-color: rgba(100,200,255,0.8);
+
+    box-shadow:
+        0 0 7px rgba(0,140,255,0.5);
+}
+
+
+/* =====================================================
+   JULY 25
+   ===================================================== */
+
+body.july25 {
+    background: #fff;
+
+    color: #000;
+}
+
+
+body.july25 #dateMessage,
+body.july25 #ascii,
+body.july25 .word-label {
+    color: #000;
+
+    text-shadow: none;
+}
+
+
+body.july25 #wordBox {
+    border-color: #000;
+
+    box-shadow: none;
+}
+
+
+body.july25 #wordBox:hover {
+    box-shadow:
+        0 0 8px rgba(0,0,0,0.3);
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 600px) {
+
+    #message {
+        font-size: 9px;
+
+        margin-bottom: 35px;
+    }
+
+
+    #dateMessage {
+        font-size: 7px;
+
+        line-height: 2;
+    }
+
+
+    .ascii-box {
+        padding: 18px 10px;
+
+        max-width: 100%;
+
+        overflow-x: auto;
+    }
+
+
+    #ascii {
+        font-size: 8px;
+    }
+
+
+    .word-label {
+        font-size: 6px;
+    }
+
+
+    #wordBox {
+        font-size: 7px;
+
+        min-width: 150px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+    
+<audio id="backgroundMusic" loop>
+    <source src="going-deeper.mp3" type="audio/mpeg">
+</audio>
+    
+<div class="container">
+
+
+    <!-- MAIN MESSAGE -->
+
+    <div id="message"></div>
+
+
+    <!-- SPECIAL DATE MESSAGE -->
+
+    <div id="dateMessage"></div>
+
+
+    <!-- ASCII -->
+
+    <div class="ascii-box">
+
+        <pre id="ascii">∞∞∞∞≈≈≈≈≈≈≈≈≈≈≈∞∞∞∞∞
+∞∞≠++++++++++++++≈≈∞
+∞∞≠++++++++++++++≈∞∞
+∞∞≠+++<span class="blink-character">▓</span>+++++<span class="blink-character">▓</span>++++≈∞∞
+∞∞≠++++++++++++++≈∞∞
+∞∞≠++++++++++++++≈∞∞
+∞∞≠+++++▀▀▀++++++≈∞∞
+∞∞≠++++++++++++++≈∞∞
+√∞∞∞∞≈≈≈≈≈≈≈≈≈≈≈≈∞
+ √≈≈≈≈≈≈≈≈≈≈≈≈≈∞</pre>
+
+    </div>
+
+
+    <!-- WORD OF THE DAY -->
+
+    <div class="word-wrapper">
+
+        <div class="word-label">
+            WORD OF THE DAY
+        </div>
+
+        <div id="wordBox">
+            &gt;&gt;&gt;•&lt;&lt;&lt;
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+    
+// music
+    
+const backgroundMusic = document.getElementById("backgroundMusic");
+
+backgroundMusic.volume = 0;
+
+document.addEventListener("click", () => {
+    backgroundMusic.play().then(() => {
+        let volume = 0;
+
+        const fadeIn = setInterval(() => {
+            volume += 0.01;
+            backgroundMusic.volume = volume;
+
+            if (volume >= 0.35) {
+                backgroundMusic.volume = 0.35;
+                clearInterval(fadeIn);
+            }
+        }, 40);
+
+    }).catch(() => {});
+}, { once: true });
+
+/* =========================================================
+   ASCII BLINK
+   ========================================================= */
+
+/*
+ * Only the two ▓ characters change.
+ *
+ * They become "=" for exactly 1 second.
+ *
+ * The rest of the ASCII never gets replaced.
+ */
+
+const blinkCharacters =
+    document.querySelectorAll(".blink-character");
+
+
+function blink() {
+
+    /*
+     * Wait between 7 and 15 seconds.
+     */
+
+    const delay =
+        Math.random() * 8000 + 7000;
+
+
+    setTimeout(() => {
+
+        /*
+         * ▓ → =
+         */
+
+        blinkCharacters.forEach(character => {
+
+            character.textContent = "=";
+
+        });
+
+
+        /*
+         * Keep the blink visible for 1 second.
+         */
+
+        setTimeout(() => {
+
+            /*
+             * = → ▓
+             */
+
+            blinkCharacters.forEach(character => {
+
+                character.textContent = "▓";
+
+            });
+
+
+            /*
+             * Wait for the next blink.
+             */
+
+            blink();
+
+        }, 1000);
+
+    }, delay);
+
+}
+
+
+blink();
+
+
+/* =========================================================
+   TYPING EFFECT
+   ========================================================= */
+
+const message =
+    document.getElementById("message");
+
+
+const dateMessage =
+    document.getElementById("dateMessage");
+
+
+function typeText(element, text, speed = 55) {
+
+    element.textContent = "";
+
+    let index = 0;
+
+    return new Promise(resolve => {
+
+        function type() {
+
+            if (index < text.length) {
+
+                element.textContent += text[index];
+
+                index++;
+
+                setTimeout(type, speed);
+
+            } else {
+
+                resolve();
+
+            }
+
+        }
+
+        type();
+
+    });
+
+}
+
+
+/* =========================================================
+   DATE
+   ========================================================= */
+
+const today = new Date();
+
+const month =
+    today.getMonth() + 1;
+
+const day =
+    today.getDate();
+
+/* =========================================================
+   SPECIAL DATES
+   ========================================================= */
+
+
+/*
+ * MAY 7
+ */
+
+if (month === 5 && day === 7) {
+
+    /*
+     * Hide normal message.
+     */
+
+    message.style.display = "none";
+
+
+    document.body.classList.add("may7");
+
+
+    const mayText =
+        "7th of May 2023, the day it all began. " +
+        "Months of preparation to show the world something raw. " +
+        "I had no idea that it would change my life.";
+
+
+    dateMessage.classList.add("visible");
+
+
+    typeText(
+        dateMessage,
+        mayText,
+        38
+    );
+
+}
+
+
+/*
+ * JULY 25
+ */
+
+else if (month === 7 && day === 25) {
+
+    /*
+     * Hide normal message.
+     */
+
+    message.style.display = "none";
+
+
+    document.body.classList.add("july25");
+
+
+    const julyText =
+        "25th of July. A summer day when the seal was broken. " +
+        "1,5 years of preparation to show the world something hopeful. " +
+        "My gratitude was endless.";
+
+
+    dateMessage.classList.add("visible");
+
+
+    typeText(
+        dateMessage,
+        julyText,
+        38
+    );
+
+}
+
+
+/*
+ * NORMAL DAYS
+ */
+
+else {
+
+    typeText(
+        message,
+        "come back another time",
+        65
+    );
+
+}
+
+
+/* =========================================================
+   WORD OF THE DAY
+   ========================================================= */
+
+const words = [
+
+    "angel",
+    "letter",
+    "data",
+    "flower",
+    "dream",
+    "promise",
+    "brazil",
+    "night",
+    "nightsky",
+    "fast",
+    "above",
+    "piano",
+    "lost",
+    "final",
+    "exhaustion",
+    "vulnerable",
+    "sabotage",
+    "attempt",
+    "ground",
+    "revenge",
+    "disappointment",
+    "smile",
+    "you",
+    "sorry",
+    "forget",
+    "beautiful",
+    "hope",
+
+    "shine",
+    "beginnings",
+    "progress",
+    "meaning",
+    "cute",
+    "dark",
+    "alternative",
+    "questioning",
+    "mirror",
+    "starflower",
+    "star",
+    "future",
+    "tram",
+    "sensitive",
+    "overwhelmed",
+    "confident",
+    "eyesight",
+    "comfort",
+    "end"
+
+];
+
+
+const wordBox =
+    document.getElementById("wordBox");
+
+
+let shuffling = false;
+
+
+/* =========================================================
+   DAILY STORAGE
+   ========================================================= */
+
+/*
+ * Save:
+ *
+ * goingDeeperWordDay
+ * goingDeeperWord
+ *
+ * This means the actual word survives
+ * page reloads.
+ */
+
+const todayKey =
+    today.getFullYear() +
+    "-" +
+    String(month).padStart(2, "0") +
+    "-" +
+    String(day).padStart(2, "0");
+
+
+const savedDay =
+    localStorage.getItem(
+        "goingDeeperWordDay"
+    );
+
+
+const savedWord =
+    localStorage.getItem(
+        "goingDeeperWord"
+    );
+
+
+/*
+ * Restore today's word if one exists.
+ */
+
+if (
+    savedDay === todayKey &&
+    savedWord
+) {
+
+    wordBox.textContent =
+        savedWord;
+
+    wordBox.classList.add("used");
+
+    wordBox.style.cursor =
+        "default";
+
+}
+
+
+/* =========================================================
+   RANDOM WORD
+   ========================================================= */
+
+function getRandomWord() {
+
+    /*
+     * "divider" is extremely rare.
+     */
+
+    if (Math.random() < 0.005) {
+
+        return "divider";
+
+    }
+
+
+    return words[
+        Math.floor(
+            Math.random() * words.length
+        )
+    ];
+
+}
+
+
+/* =========================================================
+   WORD SHUFFLING
+   ========================================================= */
+
+function shuffleWords() {
+
+    /*
+     * Don't allow multiple shuffles.
+     */
+
+    if (shuffling) return;
+
+
+    /*
+     * Don't allow another click
+     * after today's word was discovered.
+     */
+
+    if (
+        localStorage.getItem(
+            "goingDeeperWordDay"
+        ) === todayKey
+    ) {
+
+        return;
+
+    }
+
+
+    shuffling = true;
+
+
+    let elapsed = 0;
+
+    let interval = 45;
+
+
+    function shuffle() {
+
+        wordBox.textContent =
+            getRandomWord();
+
+
+        elapsed += interval;
+
+
+        /*
+         * Fast beginning.
+         */
+
+        if (elapsed < 700) {
+
+            interval = 45;
+
+        }
+
+
+        /*
+         * Gradually slow down.
+         */
+
+        else if (elapsed < 1200) {
+
+            interval += 10;
+
+        }
+
+
+        /*
+         * Slow final section.
+         */
+
+        else if (elapsed < 1700) {
+
+            interval += 22;
+
+        }
+
+
+        /*
+         * Final word.
+         */
+
+        else {
+
+            const finalWord =
+                getRandomWord();
+
+
+            wordBox.textContent =
+                finalWord;
+
+
+            shuffling = false;
+
+
+            /*
+             * Store today's date.
+             */
+
+            localStorage.setItem(
+                "goingDeeperWordDay",
+                todayKey
+            );
+
+
+            /*
+             * Store the actual word.
+             */
+
+            localStorage.setItem(
+                "goingDeeperWord",
+                finalWord
+            );
+
+
+            /*
+             * Lock until tomorrow.
+             */
+
+            wordBox.classList.add("used");
+
+            wordBox.style.cursor =
+                "default";
+
+
+            return;
+
+        }
+
+
+        setTimeout(
+            shuffle,
+            interval
+        );
+
+    }
+
+
+    shuffle();
+
+}
+
+
+wordBox.addEventListener(
+    "click",
+    shuffleWords
+);
+
+
+</script>
+
+</body>
+</html>
